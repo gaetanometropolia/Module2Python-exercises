@@ -18,30 +18,19 @@
 # 29 kilograms and 545.95 grams.
 
 
-# Conversion constants
-POUNDS_PER_TALENT = 20
-LOTS_PER_POUND = 32
-GRAMS_PER_LOT = 13.3
+#asks the user to enter a mass in medieval units: talents (leiviskä), pounds (naula), and lots (luoti).
+talents_string = input("enter the mass in talents:")
+pounds_string = input("enter the mass in pounds:")
+lots_string = input("enter the mass in lots:")
 
-# User input
-talents = float(input("Enter talents:\n"))
-pounds = float(input("\nEnter pounds:\n"))
-lots = float(input("\nEnter lots:\n"))
+#calculate kilograms and grams from the mass input
+talent_conversion_grams = float(talents_string) * 20 * 32 * 13.3
+pound_conversion_grams = float(pounds_string) * 32 * 13.3
+lots_conversion_grams = float(lots_string) * 13.3
 
-# Convert everything to lots
-total_lots = (
-    talents * POUNDS_PER_TALENT * LOTS_PER_POUND +
-    pounds * LOTS_PER_POUND +
-    lots
-)
+sum_kilograms = (talent_conversion_grams + pound_conversion_grams + lots_conversion_grams) // 1000
+sum_grams = (talent_conversion_grams + pound_conversion_grams + lots_conversion_grams) % 1000
 
-# Convert lots to grams
-total_grams = total_lots * GRAMS_PER_LOT
-
-# Split into kilograms and grams
-kilograms = int(total_grams // 1000)
-grams = total_grams % 1000
-
-# Output result
-print("\nThe weight in modern units:")
-print(f"{kilograms} kilograms and {grams:.2f} grams.")
+#output the result to the user
+print ("the weight in modern units")
+print (f"{sum_kilograms}kilograms and {sum_grams:.2f} grams")
